@@ -10,4 +10,3 @@ ansible 2.5.1
 ubuntu 18.04
 Openssh openssh-6.6.1p1-31.el7.x86_64 (ssh keygen)
 MariaDB 10.4.7
-
