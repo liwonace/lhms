@@ -12,6 +12,8 @@ oss version
 - MariaDB 10.4.7
 - 설치 가이드 추후 작성 예정.
 
+# User Group
+For Q/A and discussion here.
 
 # License
 
