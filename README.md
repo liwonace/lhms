@@ -12,6 +12,17 @@ oss version
 - MariaDB 10.4.7
 - 설치 가이드 추후 작성 예정.
 
+## About lhms
+Development of real-time hardware resource management software to improve work environment based on open OS.
+
+## Getting Started
+ * [Quick-start guide](https://[not support now]) for simple test run of lhms
+ * [Installation guide](https://[not support now]) for further instructions.
+
+## Overview
+It is necessary to introduce Linux as an open OS and to guarantee the stability of existing hardware.
+The IT environment is becoming more complex due to the continuous development of technology, which reduces the work of system integrators, maximizes resource utilization and prevents failures due to automation, remote management through hardware monitoring, and can determine potential problems through analysis. Need management software.
+
 # User Group
 For Q/A and discussion here.
 
