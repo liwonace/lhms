@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+  <head>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <script>
+             $(document).ready(function(){
+                     var fname = $("#fn").text();
+                     $('#check').val(fname);
+                     $('#ins').val(fname);
+             });
+     </script>
+  </head>
+  <body>
+          <div>
+          <a href='https://192.168.7.71:10000/mymodule/'>mainpage</a>
+          <a href='/'>node first page</a>
+          </div>
+          <div>
+          <table>
+                  <tr>
+                  <th>fname</th>&nbsp;<th>host</th>&nbsp;<th>user</th>&nbsp;<th>pwd</th>&nbsp;<th>inputdt</th>&nbsp;<th>updatedt</th>&nbsp;<th>log</th>&nbsp;<th>status</th>
+                  </tr>
+                  <% rs.forEach(function(rss,index){ %>
+                  <td id="fn"><%= rss.fname %></td>&nbsp;
+                  <!--url '/ not add -->
+                  <td><a href='/detail/<%= rss.fname %>'><%= rss.host %>&nbsp;</a></td>
+                  <td><%= rss.user %>&nbsp;</td>
+                  <td><%= rss.pwd %>&nbsp;</td>
+                  <td><%= rss.inputdt %>&nbsp;</td>
+                  <td><%= rss.updatedt %>&nbsp;</td>
+                  <td><%= rss.log %></td>
+                  <td><%= rss.status %></td>
+                  <% }); %>
+          </table>
+          </div>
+        <h1>Install HMS</h1>
+        <form method='post' action='/setup'>
+                <table border="1">
+                <tr>
+                <th>Install HMS</th>
+                </tr>
+                <tr>
+                <td>
+                host : <input type="text" name="host"/>
+                </td>
+                <td>
+                user : <input type="text" name="user"/>
+                </td>
+                <td>
+                pwd : <input type="password" name="pwd"/>
+                </td>
+                <td>
+                <input type="hidden" id="ins" value=""/>
+                </td>
+                <td>
+                <input type="submit" value="send"/>
+                </td>
+                </tr>
+                </table>
+        </form>
+        <h1>Server Status Check</h1>
+        <form method='post' action='/check'>
+                <table border="1">
+                <tr>
+                <th>Server Status Check</th>
+                </tr>
+                <tr>
+                <td>
+                host : <input type="text" name="host"/>
+                </td>
+                <td>
+                user : <input type="text" name="user"/>
+                </td>
+                <td>
+                pwd : <input type="password" name="pwd"/>
+                </td>
+                <td>
+                <input type="hidden" id="check" value=""/>
+                </td>
+                <td>
+                <input type="submit" value="send"/>
+                </td>
+                </tr>
+                </table>
+        </form>
+  </body>
+</html>

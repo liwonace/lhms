@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  </head>
+  <body>
+          <div>
+          <a href='https://192.168.7.71:10000/mymodule/'>mainpage</a>
+          <a href='https://192.168.7.71:3000'>server list</a>
+          </div>
+          <div>
+          <table>
+                  <tr>
+                  <th>fname</th>&nbsp;<th>host</th>&nbsp;<th>user</th>&nbsp;<th>pwd</th>&nbsp;<th>inputdt</th>&nbsp;<th>updatedt</th>&nbsp;<th>log</th>&nbsp;<th>status</th>
+                  </tr>
+                  <% rs.forEach(function(rss,index){ %>
+                  <td id="fname"><%= rss.fname %></td>&nbsp;
+                  <td id="host"><%= rss.host %>&nbsp;</a></td>
+                  <td id="user"><%= rss.user %>&nbsp;</td>
+                  <td id="pwd"><%= rss.pwd %>&nbsp;</td>
+                  <td><%= rss.inputdt %>&nbsp;</td>
+                  <td><%= rss.updatedt %>&nbsp;</td>
+                  <td><%= rss.log %></td>
+                  <td><%= rss.status %></td>
+                  <% }); %>
+          </table>
+          </div>
+  </body>
+</html>
