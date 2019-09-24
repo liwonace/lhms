@@ -26,6 +26,9 @@ The IT environment is becoming more complex due to the continuous development of
 # User Group
 For Q/A and discussion [here](https://groups.google.com/d/forum/liwonace_lpms)
 
+# Contribute
+For Contribution [here](https://github.com/liwonace/lhms/blob/master/CONTRIBUTING.md).
+
 # License
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
