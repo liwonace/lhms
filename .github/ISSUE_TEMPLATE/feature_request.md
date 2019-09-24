@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
+about: Suggest an idea for this project. if this doesn't look right,  [FAQ]https://github.com/liwonace/lhms/issues/new/choose
 title: ''
 labels: ''
 assignees: ''
