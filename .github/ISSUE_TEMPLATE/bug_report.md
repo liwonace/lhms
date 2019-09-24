@@ -7,6 +7,9 @@ assignees: ''
 
 ---
 
+#### Prerequisites
+Please check the [FAQ](https://github.com/liwonace/lhms/issues), and search existing [issues](https://github.com/liwonace/lhms/issues) for similar questions before creating a new issue.**YOU MAY DELETE THIS PREREQUISITES SECTION.**
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
