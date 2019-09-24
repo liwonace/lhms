@@ -24,10 +24,9 @@ It is necessary to introduce Linux as an open OS and to guarantee the stability 
 The IT environment is becoming more complex due to the continuous development of technology, which reduces the work of system integrators, maximizes resource utilization and prevents failures due to automation, remote management through hardware monitoring, and can determine potential problems through analysis. Need management software.
 
 # User Group
-For Q/A and discussion here.
+For Q/A and discussion [here](https://groups.google.com/d/forum/liwonace_lpms)
 
 # License
-
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
