@@ -1,4 +1,4 @@
-# lhms https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=popout-square
+# lhms https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=popout-square--STAR-red
 
 # 하드웨어 자원관리 소프트웨어 / Open Source Hardware Management System
 - 개방형OS 기반의 업무환경 개선을 위한 실시간 하드웨어 자원관리 소프트웨어 개발을 목표로 하며 다양한 배포판, 시스템들의 관리 및 운용 한계를 극복
