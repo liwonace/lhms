@@ -2,6 +2,62 @@
 <html>
   <head>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script>
+                $(document).on("click","#insBtn",function(){
+                        $("#setBtn").prop("disabled",true);
+                        var host = $("#host").text();
+                        var user = $("#user").text();
+                        var pwd = $("#pwd").text();
+                        // post
+                        var form = document.createElement("form");
+                        form.setAttribute("method","post");
+                        form.setAttribute("action","/setup");
+                        var hiddenField = document.createElement("input");
+                        setAttribute("type","hidden");
+                        setAttribute("id","host");
+                        setAttribute("value",host);
+                        form.appendChild(hiddenField);
+                        var hiddenField = document.createElement("input");
+                        setAttribute("type","hidden");
+                        setAttribute("id","user");
+                        setAttribute("value",user);
+                        form.appendChild(hiddenField);
+                        var hiddenField = document.createElement("input");
+                        setAttribute("type","hidden");
+                        setAttribute("id","pwd");
+                        setAttribute("value",pwd);
+                        form.appendChild(hiddenField);
+                        document.body.appendChild(form);
+                        form.submit();
+                });
+                $(document).on("click","#checkBtn",function(){
+                        $("#checkBtn").prop("disabled",true);
+                        var host = $("#host").text();
+                        var user = $("#user").text();
+                        var pwd = $("#pwd").text();
+                        // post
+                        var form = document.createElement("form");
+                        form.setAttribute("method","post");
+                        form.setAttribute("action","/check");
+                        var hiddenField = document.createElement("input");
+                        setAttribute("type","hidden");
+                        setAttribute("id","host");
+                        setAttribute("value",host);
+                        form.appendChild(hiddenField);
+                        var hiddenField = document.createElement("input");
+                        setAttribute("type","hidden");
+                        setAttribute("id","user");
+                        setAttribute("value",user);
+                        form.appendChild(hiddenField);
+                        var hiddenField = document.createElement("input");
+                        setAttribute("type","hidden");
+                        setAttribute("id","pwd");
+                        setAttribute("value",pwd);
+                        form.appendChild(hiddenField);
+                        document.body.appendChild(form);
+                        form.submit();
+                });
+        </script>
   </head>
   <body>
           <div>
