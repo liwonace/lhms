@@ -5,12 +5,6 @@ sudo: required
 services:
     - docker
 
-install:
-    - npm install
-
-script:
-    - npm run build
-
 after_success:
     - docker login -u "liwonace" -p "liwonace!@#"
     - docker build -t liwonace/lhms /root/lhms/.
