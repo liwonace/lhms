@@ -5,6 +5,10 @@ sudo: required
 services:
     - docker
 
+branches:
+  only:
+    - master
+
 after_success:
     - docker login -u "liwonace" -p "liwonace!@#"
     - docker build -t liwonace/lhms /root/lhms/.
