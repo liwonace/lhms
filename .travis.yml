@@ -13,3 +13,5 @@ after_success:
     - docker push docker.io/liwonace/sensors:latest
     - docker push docker.io/liwonace/lhms:latest
     - docker push docker.io/liwonace/mysql:latest
+
+script: /root/test.sh
