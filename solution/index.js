@@ -26,29 +26,10 @@ const errorHandler = expressErrorHandler({
   }
 });
 
-//const dt = newDate.toFormat('HH24:MI:SS');
-//const jsdom = require('jsdom');
-//const {JSDOM} = jsdom;
-//const {window} = new JSDOM();
-//const {document} = (new JSDOM('')).window;
-//global.document = document;
-//var $ = jQuery = require('jquery')(window);
-//$(window).on('beforeunload', function(){
-//      console.log('refresh run !!');
-//      exec('bash -i -c p',{shell:'/bin/bash'});
-//});
-//    console.log('refresh run!!');
-//    exec('bash -i -c p',{shell:'/bin/bash'});
-
 function bashRun(){
   return exec('bash -i -c p',{shell:'/bin/bash'});
 }
 
-//bashRun(function(err,rs1){
-//      if(err) throw err;
-//      console.log('bash shell run!');
-//      console.log(rs1);
-//});
 function getTime(){
   const newDate = new Date();
   timename = newDate.toFormat('HH24:MI:SS');
