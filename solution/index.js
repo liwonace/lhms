@@ -91,17 +91,7 @@ function sshExec (host,user,pwd){
   var text7 = `sshpass -p ${pwd} scp -o StrictHostKeyChecking=no /root/lhms/hpssacli-2.40-13.0.x86_64.rpm ${user}@${host}:/root`;
   var text8 = `sshpass -p ${pwd} scp -o StrictHostKeyChecking=no /root/lhms/hms_hp_mrt_v1.0.sh ${user}@${host}:/root`;
   var text9 = `sshpass -p ${pwd} scp -o StrictHostKeyChecking=no /root/lhms/hms_start.sh ${user}@${host}:/root`;
-  //var text10 = `sshpass -p ${pwd} ssh -o StrictHostKeyChecking=no ${user}@${host} rpm -ivh /root/hp-health-10.30-1752.18.rhel6.x86_64.rpm`;
-  //var text11 = `sshpass -p ${pwd} ssh -o StrictHostKeyChecking=no ${user}@${host} rpm -ivh /root/ssacli-2.60-19.0.x86_64.rpm`;
-  //var text12 = `sshpass -p ${pwd} ssh -o StrictHostKeyChecking=no ${user}@${host} rpm -ivh /root/hpacucli-9.20-9.0.x86_64.rpm`;
-  //var text13 = `sshpass -p ${pwd} ssh -o StrictHostKeyChecking=no ${user}@${host} rpm -ivh /root/hpssacli-2.40-13.0.x86_64.rpm`;
-  //var text10 = `sshpass -p ${pwd} ssh -o StrictHostKeyChecking=no ${user}@${host} sh /root/wbinstall.sh`;
-  //var text10 = `sshpass -p ${pwd} ssh -o StrictHostKeyChecking=no ${user}@${host} sh /root/hms_start.sh`;
-  //var text11 = `sshpass -p 'lwa123*' scp -o StrictHostKeyChecking=no ${user}@192.168.7.71:/root/hms.txt /root/${host}_hms.txt`;
-        //console.log(text1);
-        //console.log(text2);
-        //console.log(text3);
-  //var sshAry = [text1,text2,text3,text4,text5,text6,text7,text8,text9,text10,text11];
+  
   var sshAry = [text1,text2,text3,text4,text5,text6,text7,text8,text9];
     for (i = 0 ; i < sshAry.length ; i++){
       console.log('function sshExec : ',sshAry[i]);
