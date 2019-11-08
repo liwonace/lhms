@@ -3,24 +3,31 @@
   <head>
      <style>
      </style>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <title>LiwonAce | Lhms</title>
+     <link href="bootstrap.min.css">
+     <link href="AdminLTE.min.css">
+     <link href="_all-skins.min.css">
+     <link href="jquery-jvectormap.css">
+     <link href="bootstrap3-wysihtml5.min.css">
      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
      <script src="https://code.jquery.com/jquery.js"></script>
-     <script src='https://d3js.org/d3.v3.min.js'></script>
+     <!--<script src='https://d3js.org/d3.v3.min.js'></script>-->
      <script>
                 var sArray = [];
-             $(document).ready(function(){
+                $(document).ready(function(){
                 var socket;
                 var fname = $("#fn").text();
                 var data;
                 $('#check').val(fname);
                 $('#ins').val(fname);
-                //$(".bar").attr('style',"display:none;");
-                //$(".bar").attr('style',"display:inline;");
                 var socket = io.connect('https://192.168.7.71:3000',{secure:true});
                         socket.on("stdout", function (data) {
                                 console.log("data : ",data);
-                                $(".bar").css({display:"inline-block",width:"20px",height:"75px","margin-right":"2px","background-color":"teal"});
+                                //$(".bar").css({display:"inline-block",width:"20px",height:"75px","margin-right":"2px","background-color":"teal"});
                                 //console.log("time : ",JSON.parse(data).time);
                                 console.log("sensors : ",JSON.parse(data).sensors);
                                 //sensor1 = JSON.parse(data).sensors;
@@ -37,90 +44,67 @@
                         console.log("sensors : ",sensors);
                         console.log("time : ",JSON.parse(sensors).time);
                         console.log("sensors : ",JSON.parse(sensors).sensors);
+                        //$(".bar").val(sensors);
+                        var sensor1 = JSON.parse(sensors).time +" : "+JSON.parse(sensors).sensors;
+                        document.getElementById("bar").innerHTML=sensor1;
+                        //d3.select("body").selectAll("div")
+                        //.data(JSON.parse(sensors).sensors)
+                        //.enter()
+                        //.append("div")
+                        //.attr("class","bar")
+                        //.style("height", function(d){
+                        //        var barHeight = d * 1;
+                        //        return barHeight + "px";
+                        //});
                         //window.setTimeout('location.reload()', 10000);
-                        graphStart(JSON.parse(sensors).sensors);
-                        g_reloadTimer = setInterval(reloadManager,500);
                         }
-        var current_watt_for_graph = 0;
-
-        function graphStart(sensors){
-
-                    var n = 60,
-                    random = d3.random.normal(0, 0),
-                    data = sensors;
-
-                var margin = {top: 20, right: 20, bottom: 20, left: 40},
-                    width = 500 - margin.left - margin.right,
-                    height = 280 - margin.top - margin.bottom;
-
-                var x = d3.scale.linear()
-                    .domain([0, n - 1])
-                    .range([0, width]);
-
-                var y = d3.scale.linear()
-                    .domain([0, 100])
-                    .range([height, 0]);
-
-                var line = d3.svg.line()
-                    .x(function(d, i) { return x(i); })
-                    .y(function(d, i) { return y(d); });
-
-                var svg = d3.select("#bar").append("svg")
-                    .attr("width", width + margin.left + margin.right)
-                    .attr("height", height + margin.top + margin.bottom)
-                  .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-                svg.style("fill", "#fff8ee")
-
-                svg.append("defs").append("clipPath")
-                    .attr("id", "clip")
-                  .append("rect")
-                    .attr("width", width)
-                    .attr("height", height);
-
-                svg.append("g")
-                    .attr("class", "x axis")
-                    .attr("transform", "translate(0," + y(0) + ")")
-                    .call(d3.svg.axis().scale(x).orient("bottom"));
-
-                svg.append("g")
-                    .attr("class", "y axis")
-                    .call(d3.svg.axis().scale(y).orient("left"));
-
-                var path = svg.append("g")
-                    .attr("clip-path", "url(#clip)")
-                  .append("path")
-                    .datum(data)
-                    .attr("class", "line")
-                    .attr("d", line);
-                path
-                .style('stroke-width', 1)
-                .style('stroke', 'yellow');
-
-                data.push(sensors);
-                path
-                .attr("d", line)
-                .attr("transform", null)
-                .transition()
-                .duration(1000)
-                .ease("linear")
-                .attr("transform", "translate(" + x(-1) + ",0)")
-                .each("end", tick);
-                data.shift();
-        }
-
      </script>
+     <style>
+#jb-container {
+        width: 940px;
+        margin: 0px auto;
+        padding: 20px;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-header {
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-content {
+        width: 580px;
+        padding: 20px;
+        margin-bottom: 20px;
+        float: left;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-sidebar {
+        width: 260px;
+        padding: 20px;
+        margin-bottom: 20px;
+        float: right;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-footer {
+        clear: both;
+        padding: 20px;
+        border: 1px solid #bcbcbc;
+      }
+     </style>
   </head>
   <body>
-          <div>
-          <a href='https://192.168.7.71:10000/mymodule/'>mainpage</a>
-          <a href='/'>node first page</a>
-          <a href='/refresh'>server list refresh</a>
-          <a href='http://192.168.7.71:19999/#menu_sensors;theme=slate;help=true'>Sensors</a>
-          </div>
-          <div>
-          <table>
+    <nav>
+          <ul>
+            <li><a href='https://192.168.7.71:10000/mymodule/'>MainPage</a></li>
+            <li><a href='/'>nodeFirstPage</a></li>
+            <li><a href='/refresh'>serverListRefresh</a></li>
+            <li><a href='http://192.168.7.71:19999/#menu_sensors;theme=slate;help=true'>Sensors</a></li>
+          </ul>
+    </nav>
+    <div id="jb-container">
+      <p>All Server List</p>
+        <div id="jb-header">
+                <table>
                   <tr>
                   <th>fname</th>&nbsp;<th>host</th>&nbsp;<th>user</th>&nbsp;<th>pwd</th>&nbsp;<th>inputdt</th>&nbsp;<th>updatedt</th>&nbsp;<th>log</th>&nbsp;<th>status</th>
                   </tr>
@@ -136,7 +120,8 @@
                   <td><%= rss.status %></td>
                   <% }); %>
           </table>
-          </div>
+        </div>
+        <div="jb-content">
         <h1>Install HMS</h1>
         <form method='post' action='/setup'>
                 <table border="1">
@@ -162,7 +147,7 @@
                 </tr>
                 </table>
         </form>
-        <h1>Server Status Check</h1>
+        <h1>Main Server Status Check</h1>
         <form method='post' action='/check'>
                 <table border="1">
                 <tr>
@@ -187,7 +172,8 @@
                 </tr>
                 </table>
         </form>
+       </div>
         <h1> Sensors </h1>
-        <div class="bar"></div>
+        <div id="bar"></div>
   </body>
 </html>
