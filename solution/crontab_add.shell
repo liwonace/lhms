@@ -1,8 +1,0 @@
-#apt-get install postfix
-#!/bin/bash
-a=`date "+%M %H" -d '1 minute'`;
-#crontab -l | grep /root/b/mymodule/serverlist.py | sed -e 's,^,#,g' -e 's,c.py,c.back,g' | crontab
-echo $a
-b=$a" * * * /root/b/mymodule/c.py";
-#cat <crontab -l <echo `$a` | crontab -
-echo $a" * * * /root/b/mymodule/serverlist.py"| crontab
