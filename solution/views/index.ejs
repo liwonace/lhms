@@ -27,13 +27,9 @@
                 var socket = io.connect('https://192.168.7.71:3000',{secure:true});
                         socket.on("stdout", function (data) {
                                 console.log("data : ",data);
-                                //$(".bar").css({display:"inline-block",width:"20px",height:"75px","margin-right":"2px","background-color":"teal"});
-                                //console.log("time : ",JSON.parse(data).time);
                                 console.log("sensors : ",JSON.parse(data).sensors);
-                                //sensor1 = JSON.parse(data).sensors;
                                 sArray.push(data);
                                 console.log("Array : ",sArray);
-                                //d3chat(sArray);
                                 d3chat(data);
                         });
                         socket.on("disconnect", function () {
@@ -44,19 +40,8 @@
                         console.log("sensors : ",sensors);
                         console.log("time : ",JSON.parse(sensors).time);
                         console.log("sensors : ",JSON.parse(sensors).sensors);
-                        //$(".bar").val(sensors);
                         var sensor1 = JSON.parse(sensors).time +" : "+JSON.parse(sensors).sensors;
                         document.getElementById("bar").innerHTML=sensor1;
-                        //d3.select("body").selectAll("div")
-                        //.data(JSON.parse(sensors).sensors)
-                        //.enter()
-                        //.append("div")
-                        //.attr("class","bar")
-                        //.style("height", function(d){
-                        //        var barHeight = d * 1;
-                        //        return barHeight + "px";
-                        //});
-                        //window.setTimeout('location.reload()', 10000);
                         }
      </script>
      <style>
@@ -96,9 +81,7 @@
     <nav>
           <ul>
             <li><a href='https://192.168.7.71:10000/mymodule/'>MainPage</a></li>
-            <li><a href='/'>nodeFirstPage</a></li>
-            <li><a href='/refresh'>serverListRefresh</a></li>
-            <li><a href='http://192.168.7.71:19999/#menu_sensors;theme=slate;help=true'>Sensors</a></li>
+            <li><a href='http://192.168.7.130:/login.php'>점검화면</a></li>
           </ul>
     </nav>
     <div id="jb-container">
@@ -118,61 +101,10 @@
                   <td><%= rss.updatedt %>&nbsp;</td>
                   <td><%= rss.log %></td>
                   <td><%= rss.status %></td>
+                  <td><%= rss.statusType %></td>
                   <% }); %>
           </table>
         </div>
-        <div="jb-content">
-        <h1>Install HMS</h1>
-        <form method='post' action='/setup'>
-                <table border="1">
-                <tr>
-                <th>Install HMS</th>
-                </tr>
-                <tr>
-                <td>
-                host : <input type="text" name="host"/>
-                </td>
-                <td>
-                user : <input type="text" name="user"/>
-                </td>
-                <td>
-                pwd : <input type="password" name="pwd"/>
-                </td>
-                <td>
-                <input type="hidden" id="ins" value=""/>
-                </td>
-                <td>
-                <input type="submit" value="send"/>
-                </td>
-                </tr>
-                </table>
-        </form>
-        <h1>Main Server Status Check</h1>
-        <form method='post' action='/check'>
-                <table border="1">
-                <tr>
-                <th>Server Status Check</th>
-                </tr>
-                <tr>
-                <td>
-                host : <input type="text" name="host"/>
-                </td>
-                <td>
-                user : <input type="text" name="user"/>
-                </td>
-                <td>
-                pwd : <input type="password" name="pwd"/>
-                </td>
-                <td>
-                <input type="hidden" id="check" value=""/>
-                </td>
-                <td>
-                <input type="submit" value="send"/>
-                </td>
-                </tr>
-                </table>
-        </form>
-       </div>
         <h1> Sensors </h1>
         <div id="bar"></div>
   </body>
