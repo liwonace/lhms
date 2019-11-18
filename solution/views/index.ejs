@@ -35,6 +35,7 @@
                         socket.on("disconnect", function () {
                                 socket.disconnect();
                         });
+                        $("#jb-header").hide();
             });
                 function d3chat(sensors){
                         console.log("sensors : ",sensors);
@@ -78,14 +79,14 @@
      </style>
   </head>
   <body>
-    <nav>
+    <div id="jb-container">
+      <p>Menu List</p>
+      <nav>
           <ul>
             <li><a href='https://192.168.7.71:10000/mymodule/'>MainPage</a></li>
             <li><a href='http://192.168.7.130:/login.php'>점검화면</a></li>
           </ul>
-    </nav>
-    <div id="jb-container">
-      <p>All Server List</p>
+      </nav>
         <div id="jb-header">
                 <table>
                   <tr>
@@ -103,8 +104,10 @@
                   <td><%= rss.status %></td>
                   <td><%= rss.statusType %></td>
                   <% }); %>
-          </table>
+                </table>
         </div>
+          <div="jb-content">
+          </div>
         <h1> Sensors </h1>
         <div id="bar"></div>
   </body>
