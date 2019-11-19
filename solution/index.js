@@ -19,6 +19,7 @@ const date = require('date-utils');
 //const multer = require('multer');
 const upload = require('express-fileupload');
 const mime = require('mime');
+require('dotenv').config();
 const expressErrorHandler = require('express-error-handler');
 const errorHandler = expressErrorHandler({
   static:{
@@ -37,23 +38,10 @@ function exec (cmd){
   return require('child_process').execSync(cmd).toString().trim()
 }
 
-function runCheck(host,user,pwd){
-  var rc1 = `sshpass -p ${pwd} ssh -o StrictHostKeyChecking=no ${user}@${host} sh /root/hms_start.sh`;
-  var rc2 = `sshpass -p 'lwa123*' scp -o StrictHostKeyChecking=no ${user}@192.168.7.71:/root/hms.txt /root/${host}_hms.txt`;
-        //var rsv = `sshpass -p ${pwd} ssh -o StrictHostKeyChecking=no ${user}@${host} source /root/.bash_profile`;
-  console.log(rc1);
-  console.log(rc2);
-  var runAry = [rc1,rc2];
-  for (i = 0 ; i < runAry.length ; i++){
-    console.log('function runSensors : ',runAry[i]);
-  }
-  return runAry;
-}
-
 function runSensors(host,user,pwd){
   var rs1 = `sshpass -p ${pwd} ssh -o StrictHostKeyChecking=no ${user}@${host} source /root/.bash_profile`;
   var rs2 = `sshpass -p ${pwd} ssh -o StrictHostKeyChecking=no ${user}@${host} sh /root/sensors_bash.sh`;
-  var rs3 = `sshpass -p 'lwa123*' scp -o StrictHostKeyChecking=no /root/sensor.text ${user}@192.168.7.71:/root/sensors.text`;
+  var rs3 = `sshpass -p process.env.OS_PASS scp -o StrictHostKeyChecking=no /root/sensor.text ${user}@process.env.OS_HOST:root/sensors.text`;
         //var rsv = `sshpass -p ${pwd} ssh -o StrictHostKeyChecking=no ${user}@${host} source /root/.bash_profile`;
   console.log(rs1);
   console.log(rs2);
@@ -69,11 +57,11 @@ var user1;
 var pass1;
 var fname1;
 var conn = mysql.createPool({
-  host:'192.168.7.130',
-  port:'3306',
-  user:'root',
-  password: 'hms012',
-  database: 'hms',
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
   connectionLimit:10
 });
 
@@ -162,7 +150,7 @@ app.use(errorHandler);
 var servers = https.createServer({
   key: fs.readFileSync('./key.pem'),
   cert: fs.readFileSync('./cert.pem'),
-  passphrase: 'lwa123*'
+  passphrase: process.env.OS_PASS
 }, app).listen(3000);
 
 var io = socketio.listen(servers);
