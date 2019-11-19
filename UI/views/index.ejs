@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+  <head>
+     <style>
+     </style>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <title>LiwonAce | Lhms</title>
+     <link href="bootstrap.min.css">
+     <link href="AdminLTE.min.css">
+     <link href="_all-skins.min.css">
+     <link href="jquery-jvectormap.css">
+     <link href="bootstrap3-wysihtml5.min.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+     <script src="https://code.jquery.com/jquery.js"></script>
+     <!--<script src='https://d3js.org/d3.v3.min.js'></script>-->
+     <script>
+		var sArray = [];
+	        $(document).ready(function(){
+		var socket;
+		var fname = $("#fn").text();
+		var data;
+		$('#check').val(fname);
+		$('#ins').val(fname);
+		var socket = io.connect('https://192.168.7.71:3000',{secure:true});
+                        socket.on("stdout", function (data) {
+                                console.log("data : ",data);
+                                console.log("sensors : ",JSON.parse(data).sensors);
+                                sArray.push(data);
+                                console.log("Array : ",sArray);
+                                d3chat(data);
+                        });
+                        socket.on("disconnect", function () {
+                                socket.disconnect();
+                        });
+			$("#jb-header").hide();
+            });
+                function d3chat(sensors){
+                        console.log("sensors : ",sensors);
+                        console.log("time : ",JSON.parse(sensors).time);
+                        console.log("sensors : ",JSON.parse(sensors).sensors);
+			var sensor1 = JSON.parse(sensors).time +" : "+JSON.parse(sensors).sensors;
+			document.getElementById("bar").innerHTML=sensor1;
+                        }
+     </script>
+     <style>
+#jb-container {
+        width: 940px;
+        margin: 0px auto;
+        padding: 20px;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-header {
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-content {
+        width: 580px;
+        padding: 20px;
+        margin-bottom: 20px;
+        float: left;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-sidebar {
+        width: 260px;
+        padding: 20px;
+        margin-bottom: 20px;
+        float: right;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-footer {
+        clear: both;
+        padding: 20px;
+        border: 1px solid #bcbcbc;
+      }
+     </style>
+  </head>
+  <body>
+    <div id="jb-container">
+      <p>Menu List</p>
+      <nav>
+          <ul>
+            <li><a href='https://192.168.7.71:10000/mymodule/'>MainPage</a></li>
+            <li><a href='http://192.168.7.130:/login.php'>점검화면</a></li>
+          </ul>
+      </nav>
+        <div id="jb-header">
+    		<table>
+		  <tr>
+		  <th>fname</th>&nbsp;<th>host</th>&nbsp;<th>user</th>&nbsp;<th>pwd</th>&nbsp;<th>inputdt</th>&nbsp;<th>updatedt</th>&nbsp;<th>log</th>&nbsp;<th>status</th>
+		  </tr>
+		  <% rs.forEach(function(rss,index){ %>
+		  <td id="fn"><%= rss.fname %></td>&nbsp;
+		  <!--url '/ not add -->
+		  <td><a href='/detail/<%= rss.fname %>'><%= rss.host %>&nbsp;</a></td>
+		  <td><%= rss.user %>&nbsp;</td>
+		  <td><%= rss.pwd %>&nbsp;</td>
+		  <td><%= rss.inputdt %>&nbsp;</td>
+		  <td><%= rss.updatedt %>&nbsp;</td>
+		  <td><%= rss.log %></td>
+		  <td><%= rss.status %></td>
+		  <td><%= rss.statusType %></td>
+		  <% }); %>
+	        </table>
+	</div>
+	  <div="jb-content">
+	    <h1> Sensors : Change every 30 seconds, time : temperature</h1>
+            <div id="bar"></div>
+          </div>
+  </body>
+</html>

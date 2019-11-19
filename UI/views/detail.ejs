@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+  <head>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+	<script>
+		$(document).ready(function(){
+                //var socket;
+		var Ary = [];
+		var fn = $('#fn').text();
+		var fname = fn.replace(/ /gi,"");
+                //var fname = $("#fn").val();
+		console.log(fname);
+                var host = $("#host").text();
+                var user = $("#user").text();
+                var pwd = $("#pwd").text();
+		var rsv = {
+			host: host,
+			user: user,
+			pwd: pwd
+		};
+		console.log('rsv :',rsv);
+			$.ajax({
+				url: "/sensor/"+fname,
+				type: "POST",
+				data: {host:host,user:user,pwd:pwd},
+				success: function(ts){
+					console.log('ts: ',ts);
+					$.each(ts, function(i, item){
+						$("#sen").append(item.time+ " : " + item.sensors);
+					});
+				},error:function(request,status,error){
+             				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+         			}
+         		});
+		    $("#DownBtn").click(function(){
+		      var url = "/download/"+fn;
+		      window.open(url);
+		    });
+		    $("#logBtn").click(function(){
+		      $.ajax({
+                       	url: "/check",
+			type: "POST",
+			data: {host:host,user:user,pwd:pwd},
+			success: function(log){
+				console.log('log: ',log);
+				$.each(log, function(i, item){
+					$("#logs").append(item.time+ " : " + item.sensors);
+				});
+			},error:function(request,status,error){
+             			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+         		}
+         	    });
+		  });
+	        });
+	</script>
+  </head>
+  <body>
+	  <div>
+	  <a href='https://192.168.7.71:10000/mymodule/'>mainpage</a>
+	  <a href='https://192.168.7.71:3000'>server list</a>
+	  </div>
+	  <div>
+	  <table>
+		  <tr>
+		  <th>fname</th>&nbsp;<th>host</th>&nbsp;<th>user</th>&nbsp;<th>pwd</th>&nbsp;<th>inputdt</th>&nbsp;<th>updatedt</th>&nbsp;<th>log</th>&nbsp;<th>status</th>
+		  </tr>
+		  <tr>
+		  <% rs.forEach(function(rss,index){ %>
+		  <td id="fn"><%= rss.fname %></td>&nbsp;
+		  <td id="host"><%= rss.host %>&nbsp;</a></td>
+		  <td id="user"><%= rss.user %>&nbsp;</td>
+		  <td id="pwd"><%= rss.pwd %>&nbsp;</td>
+		  <td><%= rss.inputdt %>&nbsp;</td>
+		  <td><%= rss.updatedt %>&nbsp;</td>
+		  <td><%= rss.log %></td>
+		  <td><%= rss.status %></td>
+		  <td><%= rss.statusType %></td>
+		  <% }); %>
+		  </tr>
+	  </table>
+	  </div>
+	  <h1> Server Sensors</h1>
+	  <div id="sen"></div>
+	  </div>
+	  <h1> Server Check log</h1>
+	  <div id="logs"></div>
+	  </div>
+	  <div class="container">
+		  <form action="/upload" method="POST" enctype="multipart/form-data">
+		  <div class="file-field input-field">
+	 	    <div class="btn grey">
+		       <span>File</span>
+		       <input name="filename" type="file">
+		    <div>
+	  	</div>
+	  <input type="submit" value="upload"/>
+	</form>
+	<button id="DownBtn">excel Download</button>
+	<button id="logBtn">log</button>
+    </div>
+  </body>
+</html>
