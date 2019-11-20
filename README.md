@@ -10,6 +10,11 @@ oss version
 - ubuntu 18.04
 - Openssh openssh-6.6.1p1-31.el7.x86_64 (ssh keygen)
 - MariaDB 10.4.7
+- apache2 2.4.6
+- RebbitMQ 3.3.5
+- node v10.16.2
+- python 3.6
+- Docker version 1.13.1
 - 설치 가이드 추후 작성 예정.
 
 ## About lhms
