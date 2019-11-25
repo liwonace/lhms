@@ -12,10 +12,6 @@ branches:
 after_success:
     - docker login -u "liwonace" -p "liwonace!@#"
     - docker build -t liwonace/lhms /root/lhms/.
-    - docker build -t liwonace/sensors /root/sensors/.
-    - docker build -t liwonace/mysql /root/mysql/.
-    - docker push docker.io/liwonace/sensors:latest
     - docker push docker.io/liwonace/lhms:latest
-    - docker push docker.io/liwonace/mysql:latest
 
 script: npm -v
