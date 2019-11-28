@@ -107,41 +107,41 @@ app.get('/',function(req,res){
   });
 });
 
-var ondo1;
-router.route('/sensor/:fname').post(function(req,res){
-  console.log('>>>>>>>>>>>detail/sensor page');
-  var fn = req.params.fname;
-  var host= req.body.host;
-  var user= req.body.user;
-  var pwd= req.body.pwd;
-  console.log('fname:',fn);
-  console.log('host:',host);
-  console.log('user:',user);
-  console.log('pwd:',pwd);
-  const execSync = require('child_process').execSync;
-  var exec = require('child_process').exec, child;
-  console.log('fname:',fn);
-  var dt = getTime();
-  console.log("dt: ",dt);
-  var run = runSensors(host,user,pwd);
-  for( var  i = 0 ; i <  run.length ; i++ ){
-    console.log(run[i]);
-    exec(run[i]);
-  }
-  child = exec("cat /root/sensor.text", function (error, stdout, stderr) {
-    console.log('stdout: ' + stdout);
-    console.log('stderr: ' + stderr);
-    ondo1 = stdout;
-    if (error !== null) {
-      console.log('exec error: ' + error);
-    }
-    var ts = {
-      time: dt,
-      sensors: ondo1,
-    }
-    res.send({ts:ts});
-  });
-});
+//var ondo1;
+//router.route('/sensor/:fname').post(function(req,res){
+//  console.log('>>>>>>>>>>>detail/sensor page');
+//  var fn = req.params.fname;
+//  var host= req.body.host;
+//  var user= req.body.user;
+//  var pwd= req.body.pwd;
+//  console.log('fname:',fn);
+//  console.log('host:',host);
+//  console.log('user:',user);
+//  console.log('pwd:',pwd);
+//  const execSync = require('child_process').execSync;
+//  var exec = require('child_process').exec, child;
+//  console.log('fname:',fn);
+//  var dt = getTime();
+//  console.log("dt: ",dt);
+//  var run = runSensors(host,user,pwd);
+//  for( var  i = 0 ; i <  run.length ; i++ ){
+//    console.log(run[i]);
+//    exec(run[i]);
+//  }
+//  child = exec("cat /root/sensor.text", function (error, stdout, stderr) {
+//    console.log('stdout: ' + stdout);
+//    console.log('stderr: ' + stderr);
+//    ondo1 = stdout;
+//    if (error !== null) {
+//      console.log('exec error: ' + error);
+//    }
+//    var ts = {
+//      time: dt,
+//      sensors: ondo1,
+//    }
+//    res.send({ts:ts});
+//  });
+//});
 
 app.use('/',router);
 app.use(expressErrorHandler.httpError(404));
@@ -153,31 +153,31 @@ var servers = https.createServer({
   passphrase: process.env.OS_PASS
 }, app).listen(3000);
 
-var io = socketio.listen(servers);
-io.sockets.on('connection',function(socket){
-  console.log('socket connect');
-  const execSync = require('child_process').execSync;
-  var exec = require('child_process').exec;
-  function retry(){
+//var io = socketio.listen(servers);
+//io.sockets.on('connection',function(socket){
+//  console.log('socket connect');
+//  const execSync = require('child_process').execSync;
+//  var exec = require('child_process').exec;
+//  function retry(){
   //var dt = newDate.toFormat('HH24:MI:SS');
-    var dt = getTime();
-    console.log("dt: ",dt);
-    exec("bash -i -c s", function (error, stdout, stderr) {
-      var sensor = {
-        time: dt,
-        sensors: stdout
-      }
-      console.log('stdout: ' + stdout);
-      console.log('stderr: ' + stderr);
-      var sensors = JSON.stringify(sensor);
-      socket.emit('stdout',sensors);
-      if (error !== null) {
-        console.log('exec error: ' + error);
-      }
-    });
-  };
-  setInterval(retry,30000);
-  socket.on('disconnect', function(){
-    console.log('disconnect socket');
-  });
-});
+//    var dt = getTime();
+//    console.log("dt: ",dt);
+//    exec("bash -i -c s", function (error, stdout, stderr) {
+//      var sensor = {
+//        time: dt,
+//        sensors: stdout
+//      }
+//      console.log('stdout: ' + stdout);
+//      console.log('stderr: ' + stderr);
+//      var sensors = JSON.stringify(sensor);
+//      socket.emit('stdout',sensors);
+//      if (error !== null) {
+//        console.log('exec error: ' + error);
+//      }
+//    });
+//  };
+//  setInterval(retry,30000);
+//  socket.on('disconnect', function(){
+//    console.log('disconnect socket');
+//  });
+//});
