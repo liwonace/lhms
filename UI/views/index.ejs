@@ -19,31 +19,31 @@
      <script>
 		var sArray = [];
 	        $(document).ready(function(){
-		var socket;
+		//var socket;
 		var fname = $("#fn").text();
 		var data;
-		$('#check').val(fname);
-		$('#ins').val(fname);
-		var socket = io.connect('https://192.168.7.71:3000',{secure:true});
-                        socket.on("stdout", function (data) {
-                                console.log("data : ",data);
-                                console.log("sensors : ",JSON.parse(data).sensors);
-                                sArray.push(data);
-                                console.log("Array : ",sArray);
-                                d3chat(data);
-                        });
-                        socket.on("disconnect", function () {
-                                socket.disconnect();
-                        });
+		//$('#check').val(fname);
+		//$('#ins').val(fname);
+		//var socket = io.connect('https://192.168.7.71:3000',{secure:true});
+                //        socket.on("stdout", function (data) {
+                //                console.log("data : ",data);
+                //                console.log("sensors : ",JSON.parse(data).sensors);
+                //                sArray.push(data);
+                //                console.log("Array : ",sArray);
+                //                d3chat(data);
+                //        });
+                //        socket.on("disconnect", function () {
+                //                socket.disconnect();
+                //        });
 			$("#jb-header").hide();
             });
-                function d3chat(sensors){
-                        console.log("sensors : ",sensors);
-                        console.log("time : ",JSON.parse(sensors).time);
-                        console.log("sensors : ",JSON.parse(sensors).sensors);
-			var sensor1 = JSON.parse(sensors).time +" : "+JSON.parse(sensors).sensors;
-			document.getElementById("bar").innerHTML=sensor1;
-                        }
+                //function d3chat(sensors){
+                //        console.log("sensors : ",sensors);
+                //        console.log("time : ",JSON.parse(sensors).time);
+                //        console.log("sensors : ",JSON.parse(sensors).sensors);
+		//	var sensor1 = JSON.parse(sensors).time +" : "+JSON.parse(sensors).sensors;
+		//	document.getElementById("bar").innerHTML=sensor1;
+                //        }
      </script>
      <style>
 #jb-container {
