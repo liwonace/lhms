@@ -17,7 +17,7 @@
     "ejs": "^2.6.2",
     "ejsexcel": "^3.5.6",
     "excel": "^1.0.0",
-    "excel4node": "^1.7.2",
+    "excel4node": "^1.8.0",
     "exceljs": "^1.15.0",
     "exec_perl": "^1.0.4",
     "express": "^4.17.1",
