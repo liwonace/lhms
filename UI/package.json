@@ -24,7 +24,7 @@
     "excel4node": "^1.7.2",
     "exceljs": "^1.15.0",
     "exec_perl": "^1.0.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-error-handler": "^1.1.0",
     "express-fileupload": "^1.1.6-alpha.5",
     "fs": "0.0.1-security",
